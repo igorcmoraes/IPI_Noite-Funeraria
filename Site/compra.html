@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: block;
+            justify-content: center;
+            align-items: center;
+        }
+        main
+        {
+            background-color: #f0f0f0;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+        .form-container h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #333;
+        }
+        .form-container label {
+            margin: 10px 0 5px;
+            color: #555;
+        
+        }
+
+        .form-container input[type="password"],
+        .form-container input[type="date"],
+        .form-container select,
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-container p {
+            margin: 0;
+            font-size: 18px;
+            color: #555555;
+            font-family: Arial, sans-serif;
+            text-indent: 0;
+        }
+
+        .form-container .success-message {
+            color: #5cb85c;
+        }
+
+        .form-container .form-group {
+            margin-bottom: 15px;
+        }
+
+        .char-count {
+            font-size: 12px;
+            text-align: right;
+            color: #555555;
+        }
+
+        .char-limit-message {
+            color: #d9534f;
+            font-weight: bold;
+        }
+      
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="d1">
+            <h1 style="color: #9e8900 ;">AL</h1>
+        </div>
+        <div class="d2">
+            <nav>
+                <ul>
+                    <a href="index.html">
+                        <li>início</li>
+                    </a>
+                    <a href="passw.html" rel="prev">
+                        <li>cadastre-se</li>
+                    </a>
+                    <a href="#">
+                        <li>detalhes</li>
+                    </a>
+                    <a href="galeria.html" rel="next">
+                        <li>mostruário</li>
+                    </a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="form-container">
+            <br />
+            <h2 style="font-size: 35px; text-align: center; color: #000000;">Detalhes</h2><br />
+            <br />
+            <form>
+                <div class="form-group">
+
+                    <label for="idFlor">Tipo de flor para coroa:</label>
+                    <select name="Flor" id="idFlor">
+                        <option value="RB">Rosas brancas</option>
+                        <option value="CR">Rosas vermelhas</option>
+                        <option value="GR">Girassóis</option>
+                        <option value="CL">Copo de leite</option>
+                    </select>
+                    <br /><br />
+                    <label for="idCor">Cor do caixão:</label>
+                    <input type="color" name="Cor" id="idCor" />
+                    <br /><br />
+                    <label for="idFcaixao">Tipo de flor para colocar dentro do caixão:</label>
+                    <select name="Flor" id="idFcaixao">
+                        <option value="RB">Rosas brancas</option>
+                        <option value="RV">Crisântemos</option>
+                        <option value="G">Girassóis</option>
+                        <option value="CL">Copo de leite</option>
+                    </select>
+                    <br /><br />
+                    <p>Informe o tamanho para o caixão:</p><br />
+                    <input type="radio" name="Caixao" id="idCaixP" />
+                    <label for="idCaixP">P</label>
+                    <input type="radio" name="Caixao" id="idCaixM" />
+                    <label for="idCaixM">M</label>
+                    <input type="radio" name="Caixao" id="idCaixG" />
+                    <label for="idCaixG">G</label>
+                    <input type="radio" name="Caixao" id="idCaixO" />
+                    <label for="idCaixO">Outro</label>
+                    <br /><br />
+                    <div class="form-group">
+                        <label for="comments">Comentários:</label>
+                        <textarea id="comments" name="comments" rows="4" maxlength="200"></textarea>
+                        <div class="char-count" id="charCount">0/200</div>
+                        <p id="charLimitMessage" class="char-limit-message"></p>
+                    </div>
+                </div>
+
+                <button type="submit">Enviar</button>
+                <p id="formMessage"></p>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <span>Contato:(31) 3694-2249 | CEP: 34002-554</span>
+        <p style="color: #ffffff; text-align: center;">Copyright &copy; 2024 AL Horizonte. Todos os direitos reservados.
+        </p>
+    </footer>
+    <script>        
+        function updateCharCount() {
+            const textarea = document.getElementById("comments");
+            const charCount = textarea.value.length;
+            const charCountElement = document.getElementById("charCount");
+            const maxChars = 200;
+
+            charCountElement.innerText = `${charCount}/${maxChars}`;
+
+            if (charCount > maxChars) {
+                document.getElementById("charLimitMessage").innerText = "Você atingiu o limite máximo de caracteres.";
+            } else {
+                document.getElementById("charLimitMessage").innerText = "";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("comments").addEventListener("input", updateCharCount);
+           
+    
+        });
+    </script>
+</body>
+
+</html>

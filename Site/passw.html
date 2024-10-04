@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      
+        /* Form Styles */
+        .formu {
+            max-width: 600px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 8px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
+            font-family: Arial, sans-serif;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="date"],
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="date"]:focus,
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        button[type="submit"]:active {
+            background-color: #004494;
+        }
+
+        /* Password Requirements Styles */
+        .password-requirements {
+            margin: auto;
+            padding: 8px;
+            font-size: 15px;
+            list-style-type: none;
+        }
+
+        .password-requirements p {
+            margin-bottom: 5px;
+        }
+
+        .valido {
+            color: green;
+        }
+        .invalido {
+            color: red;
+        }
+        /* Messages */
+        #passwordMessage,
+        #confirmMessage,
+        #ageMessage,
+        #formMessage {
+            font-size: 10px;
+            color: #dc3545;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="d1">
+            <h1 style="color: #9e8900 ;">AL</h1>
+        </div>
+        <div class="d2">
+            <nav>
+                <ul>
+                    <a href="index.html" rel="prev">
+                        <li>início</li>
+                    </a>
+                    <a href="#">
+                        <li>cadastre-se</li>
+                    </a>
+                    <a href="compra.html" rel="next">
+                        <li>detalhes</li>
+                    </a>
+                    <a href="galeria.html">
+                        <li>mostruário</li>
+                    </a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main style="background-color: #f0f0f0;">
+        <div class="formu">
+            <form onsubmit="event.preventDefault(); if(validateForm()) this.submit();">
+
+                <br />
+                <h2 style="font-size: 35px; text-align: center;">Cadastre-se</h2><br />
+                <br />
+                <label for="idNome">Digite seu nome</label><br />
+                <input type="text" name="Nome" id="idNome" />
+                <br /><br />
+                <label for="password">Senha</label><br />
+                <input type="password" id="password" name="password" required />
+                <div class="password-requirements">
+                    <p id="requisitoTamanho" class="invalido">Pelo menos 8 caracteres</p>
+                    <p id="requisitoMinuscula" class="invalido">Pelo menos uma letra minúscula</p>
+                    <p id="requisitoEspecial" class="invalido">Pelo menos um caractere especial (!@#$%^&*(),.?":{}|<>)</p>
+                </div>
+                <p id="passwordMessage"></p>
+                <br />
+                <label for="confirmPassword">Digite novamente a senha</label><br />
+                <input type="password" id="confirmPassword" name="confirmPassword" required />
+                <p id="confirmMessage"></p>
+                <br />
+                <label for="birthDate">Data de nascimento</label><br />
+                <input type="date" id="birthDate" name="birthDate" required />
+                <p id="ageMessage"></p>
+                <br />
+                <label for="state">Estado</label><br />
+                <select id="state" name="state" onchange="updateCities()" required>
+                    <option value="">Selecione um estado</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="ES">Espírito Santo</option>
+                </select>
+                <br /><br />
+                <label for="city">Cidade</label><br />
+                <select id="city" name="city" disabled required>
+                    <option value="">Selecione uma cidade</option>
+                </select>
+                <br /><br />
+                <button type="submit">Enviar</button>
+                <p id="formMessage"></p>
+            </form>
+        </div>
+
+    </main>
+    <footer>
+        <span>Contato:(31) 3694-2249 | CEP: 34002-554</span>
+        <p style="color: #ffffff; text-align: center;">Copyright &copy; 2024 AL Horizonte. Todos os direitos reservados.
+        </p>
+    </footer>
+    <script src="passw.js"></script>
+</body>
+
+</html>
